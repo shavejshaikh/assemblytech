@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Assembly cube icon -->
+  <g transform="translate(10, 10)">
+    <!-- Cube base -->
+    <polygon points="15,25 25,20 25,30 15,35" fill="url(#logoGradient)" opacity="0.8"/>
+    <!-- Cube top -->
+    <polygon points="15,15 25,10 25,20 15,25" fill="url(#logoGradient)" opacity="0.9"/>
+    <!-- Cube side -->
+    <polygon points="25,10 35,15 35,25 25,20" fill="url(#logoGradient)" opacity="0.7"/>
+    <!-- Assembly lines -->
+    <line x1="15" y1="15" x2="35" y2="25" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+    <line x1="15" y1="25" x2="35" y2="35" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+  </g>
+  
+  <!-- Company name -->
+  <text x="55" y="25" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#1f2937">Assembly</text>
+  <text x="55" y="42" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#2563eb">Tech</text>
+  
+  <!-- Tech dots -->
+  <circle cx="180" cy="20" r="2" fill="#2563eb"/>
+  <circle cx="185" cy="25" r="2" fill="#3b82f6"/>
+  <circle cx="180" cy="30" r="2" fill="#1e40af"/>
+</svg> 
