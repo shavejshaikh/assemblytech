@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssemblyTech - Software Development, AI, Blockchain & Digital Marketing</title>
+    <meta name="description" content="AssemblyTech offers comprehensive software development, AI solutions, blockchain technology, and digital marketing services. Founded in 2020, we deliver innovative solutions for businesses worldwide.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --dark-color: #1f2937;
+            --light-color: #f8fafc;
+            --text-color: #374151;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-color) !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .about-section {
+            background: var(--light-color);
+        }
+
+        .stats-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-label {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-link {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-section {
+                padding: 100px 0 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-cube me-2"></i>AssemblyTech
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Innovative Solutions for the Digital Age</h1>
+                    <p class="hero-subtitle">AssemblyTech delivers cutting-edge software development, AI solutions, blockchain technology, and digital marketing services to transform your business.</p>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-rocket" style="font-size: 8rem; color: rgba(255,255,255,0.3);"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="service-title">Software Development</h3>
+                        <p>Custom software solutions tailored to your business needs. From web applications to enterprise systems.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="service-title">Artificial Intelligence & GenAI</h3>
+                        <p>Comprehensive AI solutions including machine learning, natural language processing, computer vision, and advanced Generative AI with LLM integration for intelligent automation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3 class="service-title">Blockchain Technology</h3>
+                        <p>Secure, transparent blockchain solutions for decentralized applications and smart contracts.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="service-title">Digital Marketing</h3>
+                        <p>Comprehensive digital marketing strategies including SEO, social media, and content marketing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start">About AssemblyTech</h2>
+                    <p class="mb-4">Founded in 2020, AssemblyTech has been at the forefront of digital innovation, helping businesses transform their operations through cutting-edge technology solutions.</p>
+                    <p class="mb-4">Our team of 10 experts specializes in AI, software development, and marketing, delivering comprehensive solutions that drive business growth and success.</p>
+                    <div class="row g-4 mt-4">
+                        <div class="col-6">
+                            <div class="stats-card">
+                                <div class="stats-number">10</div>
+                                <div class="stats-label">Team Members</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stats-card">
+                                <div class="stats-number">6+</div>
+                                <div class="stats-label">Products Built</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stats-card">
+                                <div class="stats-number">3+</div>
+                                <div class="stats-label">Years Experience</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stats-card">
+                                <div class="stats-number">100%</div>
+                                <div class="stats-label">Client Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-info">
+                        <h3 class="mb-4">Our Expertise</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <h5>AI & Machine Learning</h5>
+                                <p>Advanced AI solutions for automation and intelligent decision-making</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div>
+                                <h5>Software Development</h5>
+                                <p>Custom applications and enterprise software solutions</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h5>Digital Marketing</h5>
+                                <p>Comprehensive marketing strategies for business growth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Intelligent Document Processing for KFintech</h3>
+                            <p>AssemblyTech developed a robust OCR-based solution for KFintech to automate data extraction from structured and semi-structured banking forms. The system intelligently parses critical information such as customer name, PAN card details, and account numbers, storing them securely in a relational database.</p>
+                            <div class="mt-3">
+                                <small class="text-muted"><strong>Key Technologies:</strong> OCR (Tesseract, EasyOCR), FastAPI, PostgreSQL, PDF parsing, Celery, Docker</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">YouTube Copyright Automation for ZeeTV</h3>
+                            <p>We engineered a proprietary automation tool for ZeeTV's digital content team to monitor and detect copyright-infringing uploads across YouTube. The tool identifies unauthorized content, initiates takedown procedures, and ensures ZeeTV's channels are monetization-compliant.</p>
+                            <div class="mt-3">
+                                <small class="text-muted"><strong>Impact:</strong> Enabled ZeeTV to restore ad monetization status and safeguard intellectual property.</small>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted"><strong>Key Technologies:</strong> YouTube Data API, Selenium, Node.js automation, Google Cloud Functions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">GenAI PDF Intelligence Platform for MLX (pdfocr.ai)</h3>
+                            <p>For MLX (pdfocr.ai), we built a Generative AI-powered PDF Intelligence System that parses large volumes of unstructured PDFs, extracts key metadata and content, stores embeddings in a Vector Database, and performs semantic search. Users can ask natural language questions and receive contextually accurate responses generated by LLMs.</p>
+                            <div class="mt-3">
+                                <small class="text-muted"><strong>Use Case:</strong> Legal document analysis, financial report summarization, and compliance tracking.</small>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted"><strong>Key Technologies:</strong> LangChain, OpenAI LLM, FAISS/ChromaDB, pdfplumber, FastAPI, PostgreSQL</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-plane"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Travel Tech & Digital Marketing Platform for GreatGrandWay</h3>
+                            <p>We built an all-in-one travel booking and marketing application for GreatGrandWay to expand its digital footprint. The solution included a user-friendly travel booking portal, integrated marketing automation (via Instagram/Facebook APIs), and advanced SEO modules.</p>
+                            <div class="mt-3">
+                                <small class="text-success"><strong>Results:</strong> Reached over 10 million users within 3 months. Generated ₹10 lakh in revenue through organic and paid campaigns.</small>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted"><strong>Key Technologies:</strong> React.js, Node.js, Firebase, Meta Ads API, Google Analytics, WordPress (SEO)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">E-commerce Platform for Ritu Sekharia</h3>
+                            <p>AssemblyTech built a complete Business-to-Customer (B2C) e-commerce platform for renowned fashion designer Ritu Sekharia. The platform offers a seamless shopping experience, secure payment gateway integration, order tracking, and customer engagement features.</p>
+                            <div class="mt-3">
+                                <small class="text-muted"><strong>Features:</strong> Product catalog, custom measurements module, seasonal collections, and Instagram store sync.</small>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted"><strong>Key Technologies:</strong> Shopify/React.js, Razorpay Integration, Tailwind CSS, Strapi CMS, AWS Hosting</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Smart Inventory & QR Code Management System for Kohinoor Continental Hotel</h3>
+                            <p>Developed a QR Code-based asset and inventory management system for Kohinoor Continental Hotel. The application tracks physical assets like laptops, Wi-Fi dongles, and mobile devices, assigning QR codes for easy check-in/check-out and maintenance tracking.</p>
+                            <div class="mt-3">
+                                <small class="text-muted"><strong>Benefits:</strong> Streamlined asset tracking, reduced losses, and improved IT resource utilization.</small>
+                            </div>
+                            <div class="mt-2">
+                                <small class="text-muted"><strong>Key Technologies:</strong> Python (Flask), QR Code generation (qrcode lib), SQLite, Android WebView App</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section about-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-info text-center">
+                        <h3 class="mb-4">Ready to Transform Your Business?</h3>
+                        <p class="mb-4">Let's discuss how AssemblyTech can help you achieve your digital transformation goals.</p>
+                        <div class="contact-item justify-content-center">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email Us</h5>
+                                <p><a href="mailto:shavej.assemblytech@gmail.com" class="text-decoration-none">shavej.assemblytech@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <a href="mailto:shavej.assemblytech@gmail.com" class="btn btn-primary">Start Your Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3 class="footer-title">AssemblyTech</h3>
+                    <p>Innovative solutions for the digital age. Founded in 2020, we specialize in software development, AI, blockchain, and digital marketing.</p>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="footer-title">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services" class="footer-link">Software Development</a></li>
+                        <li><a href="#services" class="footer-link">AI & GenAI Solutions</a></li>
+                        <li><a href="#services" class="footer-link">Blockchain</a></li>
+                        <li><a href="#services" class="footer-link">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="footer-title">Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#products" class="footer-link">Our Products</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="footer-title">Contact Info</h5>
+                    <p><i class="fas fa-envelope me-2"></i>shavej.assemblytech@gmail.com</p>
+                    <p><i class="fas fa-users me-2"></i>10 Team Members</p>
+                    <p><i class="fas fa-calendar me-2"></i>Founded 2020</p>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #374151;">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2024 AssemblyTech. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Smooth Scrolling -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
